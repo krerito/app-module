@@ -4,13 +4,18 @@ import Card from './components/card'
 function App() {
   return (
     <>
-      <div className="content">
-
-        <NavAtem />
-        <div className="cards-container">
+      <NavAtem />
+      <div className="cards-container"
+        style={{
+          display: 'flex',
+          flexDirection:'column',
+          justifyContent: 'center',
+        }}
+      >
         <Card />
-        </div>
-
+        <Card />
+        <Card />
+        <Card />
       </div>
     </>
   )
