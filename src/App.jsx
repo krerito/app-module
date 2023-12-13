@@ -1,9 +1,13 @@
 import NavAtem from './components/navatem';
 import Card from './components/card'
 import CardPost from './components/post';
+import React, { useState } from 'react';
+import AtemApp from './components/header'
 
-function App({selectedCard}) {
-  let posts = [
+
+function App() {
+  const [selectedCard, setSelectedCard] = useState(null);
+  const posts = [
     {
       id: '1',
       tittlePost: 'Primer post',
@@ -14,19 +18,35 @@ function App({selectedCard}) {
       id: '2',
       tittlePost: 'Segundo post',
       descriptionPost: 'Pinche descripcion chingona',
-      datePost: '12/14/2023',
+      datePost: '12/01/2023',
     },
     {
       id: '3',
       tittlePost: 'Tercera post',
       descriptionPost: 'Manden armas a siria',
-      datePost: '12/14/2023',
+      datePost: '12/18/2023',
     },
   ]
+
+  const handleCardClick = (cardId) => {
+    setSelectedCard(cardId);
+  };
 
   return (
     <>
       <NavAtem />
+
+      <header>
+        <div className="header-container" style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          marginTop: '10px'
+        }}>
+          <AtemApp />
+        </div>
+      </header>
+
       <section style={{
         display: 'flex',
       }}>
@@ -39,6 +59,12 @@ function App({selectedCard}) {
             width: '40%'
           }}
         >
+          <form className="d-flex mt-3" role="search">
+            <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"></input>
+            <button className="btn btn-success" type="submit">
+              Search
+            </button>
+          </form>
           {posts.map
             (post =>
               <Card
@@ -47,6 +73,7 @@ function App({selectedCard}) {
                 tittlePost={post.tittlePost}
                 descriptionPost={post.descriptionPost}
                 datePost={post.datePost}
+                onCardClick={handleCardClick}
               />
             )
           }
@@ -55,11 +82,13 @@ function App({selectedCard}) {
           style={{
             width: '60%',
           }}>
-          <CardPost 
-            key={posts.id}
-            tittlePost={posts.tittlePost}
-            descriptionPost={posts.descriptionPost}
-            datePost={posts.datePost} />
+          {selectedCard && (
+            <CardPost
+              tittlePost={posts[selectedCard - 1].tittlePost}
+              descriptionPost={posts[selectedCard - 1].descriptionPost}
+              datePost={posts[selectedCard - 1].datePost}
+            />
+          )}
         </div>
       </section>
     </>

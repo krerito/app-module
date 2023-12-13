@@ -1,12 +1,8 @@
-import { useState } from 'react';
 import icon from '../assets/React.png'
 import Button from 'react-bootstrap/Button';
 
-function Card({id, tittlePost, descriptionPost, datePost}) {
+function Card({ id, tittlePost, descriptionPost, datePost,onCardClick  }) {
 
-    //lo siguiente con regresa una [variable, funcion]=asignare el estado
-    const [selectedCard,setSelectedCard]=useState(-1);
-    
     return (
         <>
             <div className="cardReact"
@@ -54,27 +50,11 @@ function Card({id, tittlePost, descriptionPost, datePost}) {
                 >
 
                     <Button
-                        onClick={() => {setSelectedCard(id)}}
+                        onClick={() => {onCardClick(id)} }
                     >
-                        Read more...
+                        Read more
                     </Button>
                 </div>
-                {/* <Collapse in={open}>
-                    <div id="example-collapse-text">
-                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus
-                        terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer
-                        labore wes anderson cred nesciunt sapiente ea proident.
-                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus
-                        terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer
-                        labore wes anderson cred nesciunt sapiente ea proident.
-                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus
-                        terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer
-                        labore wes anderson cred nesciunt sapiente ea proident.
-                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus
-                        terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer
-                        labore wes anderson cred nesciunt sapiente ea proident.
-                    </div>
-                </Collapse> */}
             </div >
         </>
     )
